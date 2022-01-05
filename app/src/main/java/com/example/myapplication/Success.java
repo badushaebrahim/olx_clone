@@ -39,7 +39,7 @@ public class Success extends AppCompatActivity {
     ExtendedFloatingActionButton mAddFab;
     TextView addAlarmActionText, addPersonActionText;
     // to check whether sub FABs are visible or not
-    Boolean isAllFabsVisible;
+    Boolean isAllFabsVisible,testr=true;
     RecyclerView reses;
   //  RecyclerView.Adapter reseradapter;
     RecyclerView.LayoutManager reslay;
@@ -47,54 +47,52 @@ public class Success extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //no app bar
-        try
-    {
-        this.getSupportActionBar().hide();
-    }
-        catch (NullPointerException e){}
-    //no appbar
-    //setContentView(R.layout.activity_main);
+        try {
+            this.getSupportActionBar().hide();
+        } catch (NullPointerException e) {
+        }
+        //no appbar
+        //setContentView(R.layout.activity_main);
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sucess);
         new2 = findViewById(R.id.text2);
-        reses =findViewById(R.id.recyclerView);
-        reslay= new LinearLayoutManager(this);
+        reses = findViewById(R.id.recyclerView);
+        reslay = new LinearLayoutManager(this);
         reses.setLayoutManager(reslay);
 
         Liste = new ArrayList<>();
         //new3 = findViewById(R.id.text22);
 
-      //  me=getIntent().getExtras().getString("me");
+        //  me=getIntent().getExtras().getString("me");
         // pwd=getIntent().getExtras().getString("pwd");
-     //   Log.d("TAG", "up: "+me);
+        //   Log.d("TAG", "up: "+me);
+        //get user di from
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
 
-// The value will be default as empty string because for
-// the very first time when the app is opened, there is nothing to show
 
         int a = sh.getInt("uid", 0);
 
 // We can then use the data
-        Log.d("TAG", "onCreate: id of user "+a);
+        Log.d("TAG", "onCreate: id of user " + a);
         //shit
         mAddFab = findViewById(R.id.add_fab);
         mAddAlarmFab = findViewById(R.id.add_alarm_fab);
-        mAddPersonFab = findViewById(R.id.add_person_fab);
+        //mAddPersonFab = findViewById(R.id.add_person_fab);
         mAddFab = findViewById(R.id.add_fab);
         mAddAlarmFab = findViewById(R.id.add_alarm_fab);
-        mAddPersonFab = findViewById(R.id.add_person_fab);
+       // mAddPersonFab = findViewById(R.id.add_person_fab);
         addAlarmActionText =
                 findViewById(R.id.add_alarm_action_text);
-        addPersonActionText =
-                findViewById(R.id.add_person_action_text);
+       //addPersonActionText =
+               // findViewById(R.id.add_person_action_text);
         // Now set all the FABs and all the action name
         // texts as GONE
         mAddAlarmFab.setVisibility(View.GONE);
-        mAddPersonFab.setVisibility(View.GONE);
+       // mAddPersonFab.setVisibility(View.GONE);
         addAlarmActionText.setVisibility(View.GONE);
-        addPersonActionText.setVisibility(View.GONE);
+       // addPersonActionText.setVisibility(View.GONE);
         // make the boolean variable as false, as all the
         // action name texts and all the sub FABs are
         // invisible
@@ -153,7 +151,7 @@ public class Success extends AppCompatActivity {
         // FAB. Here it shows simple Toast msg. The Toast
         // will be shown only when they are visible and only
         // when user clicks on them
-        mAddPersonFab.setOnClickListener(
+      /*  mAddPersonFab.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -162,7 +160,7 @@ public class Success extends AppCompatActivity {
                                                 .this, "Person Added",
                                         Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
         // below is the sample action to handle add alarm
         // FAB. Here it shows simple Toast msg The Toast
         // will be shown only when they are visible and only
@@ -171,46 +169,48 @@ public class Success extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText
-
-                                (Success.this ,"Alarm Added",
-                                        Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Success.this, addprod.class);
+                        // intent.putExtra("me", "rumba");
+                        startActivity(intent);
+                        finish();
                     }
                 });
         //shit here
-       // new2.setText(me);
+        // new2.setText(me);
         //new3.setText(pwd);
-        JsonArrayRequest jar = new JsonArrayRequest(n.URL+"getdata.php",
-                responce -> {
-                    try {
-                        parse_data(responce);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                error -> Toast.makeText(Success.this, "data get error", Toast.LENGTH_SHORT).show());
+        //get data
+
+            JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
+                    responce -> {
+                        try {
+                            parse_data(responce);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> Toast.makeText(Success.this, "data get error", Toast.LENGTH_SHORT).show());
             queue = Volley.newRequestQueue(Success.this);
             queue.add(jar);
 
-    }
-
-    private void parse_data(JSONArray jarray) throws JSONException {
-        for (int i =0;i<jarray.length();i++) {
-            JSONObject jos = jarray.getJSONObject(i);
-            Listing l = new Listing();
-            l.setLink(jos.getString("imagelink"));
-            l.setDetail(jos.getString("long_details"));
-            l.setHead(jos.getString("Listing_title"));
-            l.setLat((float) jos.getDouble("latitude"));
-            l.setLongi((float) jos.getDouble("longi"));
-            l.setSellerid(jos.getInt("sellerid"));
-            l.setLid(jos.getInt("Lid"));
-            Liste.add(l);
         }
-        //adapter
-        resinf  rar =new resinf(Liste,this);
-        reses.setAdapter(rar);
-    }
+
+        private void parse_data (JSONArray jarray) throws JSONException {
+            for (int i = 0; i < jarray.length(); i++) {
+                JSONObject jos = jarray.getJSONObject(i);
+                Listing l = new Listing();
+                l.setLink(jos.getString("imagelink"));
+                l.setDetail(jos.getString("long_details"));
+                l.setHead(jos.getString("Listing_title"));
+                l.setLat((float) jos.getDouble("latitude"));
+                l.setLongi((float) jos.getDouble("longi"));
+                l.setSellerid(jos.getInt("sellerid"));
+                l.setLid(jos.getInt("Lid"));
+                Liste.add(l);
+            }
+            //adapter
+            resinf rar = new resinf(Liste, this);
+            reses.setAdapter(rar);
+        }
 
 
     public  void rr(View v){

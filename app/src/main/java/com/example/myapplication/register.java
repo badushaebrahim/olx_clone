@@ -120,7 +120,7 @@ public class register extends AppCompatActivity {
                     data.put("email", EMAIL);
                     data.put("password", PASSWORD);
                     data.put("address",Address);
-                    data.put("number",Number);
+                    data.put("number", Number);
                     return data;
                 }
             };
@@ -131,7 +131,7 @@ public class register extends AppCompatActivity {
 
 
            Intent intent = new Intent(register.this, MainActivity.class);
-            intent.putExtra("me", "rumba");
+           // intent.putExtra("me", "rumba");
             startActivity(intent);
             finish();
 

@@ -4,12 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/learn_android/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/learn_android/app/src/main/res/layout/addilemtosell.xml" value="0.3129528985507246" />
         <entry key="..\:/learn_android/app/src/main/res/layout/bubble.xml" value="0.23229166666666667" />
         <entry key="..\:/learn_android/app/src/main/res/layout/carvie.xml" value="0.264" />
         <entry key="..\:/learn_android/app/src/main/res/layout/msgfromproduct.xml" value="0.19791666666666666" />
         <entry key="..\:/learn_android/app/src/main/res/layout/newr.xml" value="0.2" />
         <entry key="..\:/learn_android/app/src/main/res/layout/registeractivity.xml" value="0.264" />
-        <entry key="..\:/learn_android/app/src/main/res/layout/sucess.xml" value="0.176" />
+        <entry key="..\:/learn_android/app/src/main/res/layout/sucess.xml" value="0.5" />
       </map>
     </option>
   </component>
