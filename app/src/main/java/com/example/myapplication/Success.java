@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -113,11 +111,11 @@ public class Success extends AppCompatActivity {
                             // true make all the action name
                             // texts and FABs VISIBLE.
                             mAddAlarmFab.show();
-                            mAddPersonFab.show();
+                           // mAddPersonFab.show();
                             addAlarmActionText
                                     .setVisibility(View.VISIBLE);
-                            addPersonActionText
-                                    .setVisibility(View.VISIBLE);
+                           // addPersonActionText
+                                 //   .setVisibility(View.VISIBLE);
 
                             // Now extend the parent FAB, as
                             // user clicks on the shrinked
@@ -132,11 +130,11 @@ public class Success extends AppCompatActivity {
                             // true make all the action name
                             // texts and FABs GONE.
                             mAddAlarmFab.hide();
-                            mAddPersonFab.hide();
+                          //  mAddPersonFab.hide();
                             addAlarmActionText
                                     .setVisibility(View.GONE);
-                            addPersonActionText
-                                    .setVisibility(View.GONE);
+                           // addPersonActionText
+                                    //.setVisibility(View.GONE);
                             // Set the FAB to shrink after user
                             // closes all the sub FABs
                             mAddFab.shrink();

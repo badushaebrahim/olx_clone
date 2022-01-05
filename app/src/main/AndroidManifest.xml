@@ -41,6 +41,9 @@
             android:name=".register"
             android:exported="true" />
         <activity
+            android:name=".addprod"
+            android:exported="true" />
+        <activity
             android:name=".newr"
             android:exported="true" />
         <activity
