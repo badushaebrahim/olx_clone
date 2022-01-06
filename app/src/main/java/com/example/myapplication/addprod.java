@@ -1,13 +1,14 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
-import android.webkit.PermissionRequest;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,12 +37,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class addprod extends AppCompatActivity {
-    EditText name,price,details;
-
-    ImageView btncamera,mg;
+    EditText name,price,details,type;
+    public String Text,Name,Price,Details,Type;
+    ImageView btncamera,img;
     Button btnupload;
     Bitmap bitmap;
     String encodedimage;
+   Spinner dropdown;
+
     da nn = new da();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class addprod extends AppCompatActivity {
         setContentView(R.layout.addilemtosell);
         //get the spinner from the xml.
 
-        Spinner dropdown = findViewById(R.id.spinner);
+        dropdown= findViewById(R.id.spinner);
 //create a list of items for the spinner.
         String[] items = new String[]{"Product", "Service"};
 //create an adapter to describe how the items are displayed, adapters are used in several places in android.
@@ -72,9 +75,11 @@ public class addprod extends AppCompatActivity {
 
 
 
-
+        img=(ImageView)findViewById(R.id.sbmit_camera2);
+       //  dropdown.getSelectedItem().toString();
         btncamera=(ImageView)findViewById(R.id.sbmit_camera);
         btnupload=(Button)findViewById(R.id.buttonadd);
+        //Name=name.toString();
         btncamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,15 +135,20 @@ public class addprod extends AppCompatActivity {
 
     private void uploadtoserver()
     {
-        final String name=name.getText().toString().trim();
-        final String desig=t2.getText().toString().trim();
+        final String Name=name.getText().toString().trim();
+        final String Price=price.getText().toString().trim();
+        Details = details.getText().toString().trim();
+        Type= dropdown.getSelectedItem().toString();
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        int me = sh.getInt("uid", 0);
+
 
         StringRequest request=new StringRequest(Request.Method.POST, nn.URL+"uploads.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response)
             {
                 name.setText("");
-                t2.setText("");
+                price.setText("");
                 img.setImageResource(R.drawable.ic_launcher_background);
                 Toast.makeText(getApplicationContext(),"FileUploaded Successfully",Toast.LENGTH_SHORT).show();
             }
@@ -152,9 +162,12 @@ public class addprod extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError
             {
+
                 Map<String,String> map=new HashMap<String, String>();
-                map.put("t1",name);
-                map.put("t2",desig);
+                map.put("name", Name);
+                map.put("price",Price);
+                map.put("type",Type);
+                map.put("sellerid", String.valueOf(me));
                 map.put("upload",encodedimage);
                 return map;
             }

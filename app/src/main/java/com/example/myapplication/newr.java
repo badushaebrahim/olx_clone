@@ -6,16 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -23,10 +17,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class newr extends FragmentActivity implements OnMapReadyCallback {
     RequestQueue queue;
@@ -49,6 +39,7 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         details = findViewById(R.id.Details);
         img = findViewById(R.id.image);
 
+
     }
 
 
@@ -61,7 +52,9 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         details.setText(details2);
         //load an imge using picasso
         String lin = getIntent().getExtras().getString("imglink");
-        Picasso.with(this).load(lin).into(img);
+        da l = new da();
+        String ps= l.URL+"upload/"+lin;
+        Picasso.with(this).load(ps).into(img);
         float longi =getIntent().getExtras().getFloat("longi");
         float lat = getIntent().getExtras().getFloat("lat");
 
